@@ -6,6 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <random>
+#include <conio.h>
 
 using namespace std;
 
@@ -21,7 +22,7 @@ int FileLinesCount(string fileName) {
 	return numLines;
 }
 
-void OutputLineFromFile (string fileName, int certainLine) {
+string GetLineFromFile (string fileName, int certainLine) {
 	ifstream myFile;
 
 	myFile.open(fileName, std::fstream::in);
@@ -30,7 +31,7 @@ void OutputLineFromFile (string fileName, int certainLine) {
 	int countLines = 1;
 	while (getline(myFile, line)) {
 		if (countLines == certainLine) {
-			cout << line << "\n";
+			return line;
 		}
 		countLines++;
 	}
@@ -97,6 +98,59 @@ void ChooseCategory(int& choice) {
 }
 
 
+void OutputQuestion(string level, string category, int &check) {
+	system("cls");
+	check = 1;
+	string answerChoice;
+	string fileName = "level" + level + ".txt";
+	vector<int> a = FindLinesEqualToString(fileName, category);
+	int rand = RandomNumberFromVector(a);
+	cout << "========================================================================" << endl;
+	for (int i = rand + 1; i < rand + 6; i++) cout << GetLineFromFile(fileName, i) << endl;
+	cout << "========================================================================" << endl;
+	cout << "Enter your choice here: ";
+	cin >> answerChoice;
+	cout << endl;
+	string questionID = GetLineFromFile(fileName, rand - 1);
+	string rightAnswer = GetLineFromFile("answers.txt", stoi(questionID));
+	system("cls"); 
+	if (answerChoice == rightAnswer) {
+		cout << "========================================================================" << endl;
+		cout << "                          Correct answer!                               " << endl;
+		cout << "========================================================================" << endl;
+		system("pause");
+	}
+	else {
+		system("cls");
+		cout << "========================================================================" << endl;
+		cout << "                   Your answer was wrong.                               " << endl;
+		cout << "         The correct answer was: "; 
+		if (rightAnswer == "A") {
+			cout << GetLineFromFile(fileName, rand + 2) << endl;
+		}
+		else if (rightAnswer == "B") {
+			cout << GetLineFromFile(fileName, rand + 3) << endl;
+		}
+			else if (rightAnswer == "C") {
+				cout << GetLineFromFile(fileName, rand + 4) << endl;
+			}
+		    	else {
+			    	cout << GetLineFromFile(fileName, rand + 5) << endl;
+				}
+		cout << "========================================================================" << endl;
+
+		check = 0;
+	}
+}
+
+void OutputAllQuestions (string category) {
+	int check = 1;
+	int questionLevels[15] = { 1, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 9, 10 };
+	int i = 0;
+	do { OutputQuestion(to_string(questionLevels[i]), category, check); i++; } 
+	while (check != 0);
+}
+
 int main()
 {
 	ChangeConsoleSize();
@@ -106,13 +160,24 @@ int main()
 		return 0;
 	}
 	
-	if (choice == 1) { 
+	if (choice == 1) {
 		system("cls");
-		ChooseCategory(choice);
+		int categoryChoice; string category;
+		ChooseCategory(categoryChoice);
 		system("cls");
-	
+
+		if (categoryChoice == 1) {
+			category = "Bulgarian history";
+		}
+		else if (categoryChoice == 2) {
+			category = "Bulgarian geography";
+		}
+		else if (categoryChoice == 3) {
+			category = "Bulgarian sport";
+		}
+
+		OutputAllQuestions(category);
 	}
-	
 	
 	return 0;
 }
