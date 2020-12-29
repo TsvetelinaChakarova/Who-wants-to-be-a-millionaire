@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <random>
 
 using namespace std;
 
@@ -53,6 +54,15 @@ vector<int> FindLinesEqualToString (string fileName, string searchedString) {
 	myFile.close();
 
 	return foundLines;
+}
+
+int RandomNumberFromVector(vector<int> vtr) {
+	random_device random_device;
+	mt19937 engine{ random_device() };
+	uniform_int_distribution<int> dist(0, vtr.size() - 1);
+	int randomElement = vtr[dist(engine)];
+
+	return randomElement;
 }
 
 void HomeScreen(int &choice) {
