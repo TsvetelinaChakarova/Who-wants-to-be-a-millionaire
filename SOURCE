@@ -3,9 +3,21 @@
 #include <stdlib.h>
 #include <string.h>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
+
+int FileLinesCount(string s) {
+	
+	int numLines = 0;
+	ifstream in(s);
+	string unused;
+	while (getline(in, unused))
+		++numLines;
+
+	return numLines;
+}
 
 void HomeScreen(int &choice) {
 	cout << "===================== Who wants to be a milionaire =====================" << endl;
