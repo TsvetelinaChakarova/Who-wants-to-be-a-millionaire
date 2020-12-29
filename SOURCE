@@ -1,0 +1,61 @@
+
+#include <iostream>
+#include <stdlib.h>
+#include <string.h>
+#include <string>
+
+using namespace std;
+
+
+void HomeScreen(int &choice) {
+	cout << "===================== Who wants to be a milionaire =====================" << endl;
+	cout << "=========================== Bulgaria edition ===========================" << endl;
+	cout << endl;
+	cout << "                           1. New Game                                  " << endl;
+	cout << "                           2. Add new question                          " << endl;
+	cout << "                           3. Edit question                             " << endl;
+	cout << "                           4. Exit                                      " << endl;
+	cout << endl;
+	cout << "========================================================================" << endl;
+	cout << endl;
+	cout << "Enter your choice here: "; 
+	cin >> choice; 
+	cout << endl;
+}
+
+void ChooseCategory(int& choice) {
+	cout << "========================================================================" << endl;
+	cout << endl;
+	cout << "                       Choose a category:                               " << endl;
+	cout << "                       1. Bulgarian history                             " << endl;
+	cout << "                       2. Bulgarian geography                           " << endl;
+	cout << "                       3. Bulgarian sport                               " << endl;
+	cout << "                       4. All categories                                " << endl;
+	cout << endl;
+	cout << "========================================================================" << endl;
+	cout << "Enter your choice here: ";
+	cin >> choice;
+	cout << endl;
+}
+
+
+int main()
+{
+	ChangeConsoleSize();
+	int choice;
+	HomeScreen(choice);
+	if (choice == 4) {
+		return 0;
+	}
+	
+	if (choice == 1) { 
+		system("cls");
+		ChooseCategory(choice);
+		system("cls");
+	
+	}
+	
+	
+	return 0;
+}
+
