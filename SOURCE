@@ -8,15 +8,31 @@
 using namespace std;
 
 
-int FileLinesCount(string s) {
+int FileLinesCount(string fileName) {
 	
 	int numLines = 0;
-	ifstream in(s);
+	ifstream in(fileName);
 	string unused;
 	while (getline(in, unused))
 		++numLines;
 
 	return numLines;
+}
+
+void OutputLineFromFile (string fileName, int certainLine) {
+	ifstream myFile;
+
+	myFile.open(fileName, std::fstream::in);
+
+	string line;
+	int countLines = 1;
+	while (getline(myFile, line)) {
+		if (countLines == certainLine) {
+			cout << line << "\n";
+		}
+		countLines++;
+	}
+	myFile.close();
 }
 
 void HomeScreen(int &choice) {
