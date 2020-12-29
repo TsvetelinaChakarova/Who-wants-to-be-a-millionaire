@@ -149,6 +149,28 @@ void OutputAllQuestions (string category) {
 	int i = 0;
 	do { OutputQuestion(to_string(questionLevels[i]), category, check); i++; } 
 	while (check != 0);
+	system("cls");
+	cout << "========================================================================" << endl;
+	cout << endl;
+	cout << "             End of game             " << endl;
+	cout << endl;
+	cout << "========================================================================" << endl;
+}
+
+
+void OutputAllQueastionsForAllCategories() {
+	int check = 1;
+	string categories[3] = { "Bulgarian history", "Bulgarian geography", "Bulgarian sport" };
+	int questionLevels[15] = { 1, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 9, 10 };
+	int i = 0;
+	do { OutputQuestion(to_string(questionLevels[i]), categories[rand() % 3], check, i + 1); i++; if (i == 15) break; } 
+	while (check != 0);
+	system("cls");
+	cout << "========================================================================" << endl;
+	cout << endl;
+	cout << "             End of game             " << endl;
+	cout << endl;
+	cout << "========================================================================" << endl;
 }
 
 int main()
@@ -167,16 +189,18 @@ int main()
 		system("cls");
 
 		if (categoryChoice == 1) {
-			category = "Bulgarian history";
+			OutputAllQuestions("Bulgarian history");
 		}
 		else if (categoryChoice == 2) {
-			category = "Bulgarian geography";
+			OutputAllQuestions("Bulgarian geography");
 		}
 		else if (categoryChoice == 3) {
-			category = "Bulgarian sport";
+			OutputAllQuestions("Bulgarian sport");
 		}
 
-		OutputAllQuestions(category);
+		if (categoryChoice == 4) {
+			OutputAllQueastionsForAllCategories();
+		}
 	}
 	
 	return 0;
