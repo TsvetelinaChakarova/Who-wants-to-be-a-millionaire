@@ -4,6 +4,7 @@
 #include <string.h>
 #include <string>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -33,6 +34,27 @@ void OutputLineFromFile (string fileName, int certainLine) {
 		countLines++;
 	}
 	myFile.close();
+}
+
+
+void FindLinesEqualToString (string fileName, string searchedString) {
+	
+	vector<int> foundLines;
+	ifstream myFile;
+	myFile.open(fileName, std::fstream::in);
+	string line;
+	int countLines = 1;
+	while (getline(myFile, line)) {
+		if (line == searchedString) {
+			foundLines.push_back(countLines);
+		}
+		countLines++;
+	}
+	myFile.close();
+
+	for (int i = 0; i < foundLines.size(); i++) {
+		cout << foundLines[i] << " " << endl;
+	}
 }
 
 void HomeScreen(int &choice) {
