@@ -98,13 +98,17 @@ void ChooseCategory(int& choice) {
 }
 
 
-void OutputQuestion(string level, string category, int &check) {
+void OutputQuestion(string level, string category, int &check, int numberQuestion, int &prev, int &rem) {
+	string prizeScale[15] = { "$500", "$1,000", "$2,000", "$3,000", "$5,000", "$7,500", "$10,000", "$20,000",
+				 "$30,000", "$50,000", "$75,000", "$150,000", "$250,000", "$500,000", "$1 MILLION" };
 	system("cls");
 	check = 1;
 	string answerChoice;
 	string fileName = "level" + level + ".txt";
-	vector<int> a = FindLinesEqualToString(fileName, category);
-	int rand = RandomNumberFromVector(a);
+	srand(time(0));
+	int randomNumber = rand() % a.size();
+	int rand = a[randomNumber];
+	prev = rand;
 	cout << "========================================================================" << endl;
 	for (int i = rand + 1; i < rand + 6; i++) cout << GetLineFromFile(fileName, i) << endl;
 	cout << "========================================================================" << endl;
@@ -117,6 +121,7 @@ void OutputQuestion(string level, string category, int &check) {
 	if (answerChoice == rightAnswer) {
 		cout << "========================================================================" << endl;
 		cout << "                          Correct answer!                               " << endl;
+		cout << "                    Your cuurent prize is:" << prizeScale[numberQuestion - 1] << endl;
 		cout << "========================================================================" << endl;
 		system("pause");
 	}
@@ -137,6 +142,10 @@ void OutputQuestion(string level, string category, int &check) {
 		    	else {
 			    	cout << GetLineFromFile(fileName, rand + 5) << endl;
 				}
+		cout << "                       END OF GAME!                                     " << endl;
+		if (numberQuestion == 1) { cout << "                          You won: $0" << endl; }
+		else
+		cout << "                  You won: " << prizeScale[numberQuestion - 2] << endl;
 		cout << "========================================================================" << endl;
 
 		check = 0;
@@ -147,14 +156,24 @@ void OutputAllQuestions (string category) {
 	int check = 1;
 	int questionLevels[15] = { 1, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 9, 10 };
 	int i = 0;
-	do { OutputQuestion(to_string(questionLevels[i]), category, check); i++; } 
+	int prev; 
+	int rem;
+	do { 
+		OutputQuestion(to_string(questionLevels[i]), category, check, i + 1, prev, rem);
+		i++; 
+		if (i == 15) {
+			break;
+		} 
 	while (check != 0);
 	system("cls");
-	cout << "========================================================================" << endl;
-	cout << endl;
-	cout << "             End of game             " << endl;
-	cout << endl;
-	cout << "========================================================================" << endl;
+	if (i == 15) {
+		cout << "========================================================================" << endl;
+		cout << endl;
+		cout << "                       Congratulattions!                                " << endl;
+		cout << "                      You won $1 MILLION!                               " << endl;;
+		cout << endl;
+		cout << "========================================================================" << endl;
+	}
 }
 
 
@@ -163,14 +182,23 @@ void OutputAllQueastionsForAllCategories() {
 	string categories[3] = { "Bulgarian history", "Bulgarian geography", "Bulgarian sport" };
 	int questionLevels[15] = { 1, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 9, 10 };
 	int i = 0;
-	do { OutputQuestion(to_string(questionLevels[i]), categories[rand() % 3], check, i + 1); i++; if (i == 15) break; } 
+	do { 
+		srand(time(0));                 // helps to generate a different number each time rand() is executed
+		int randomNumber = rand() % 3;  // generates a random number between 0 and 2
+		OutputQuestion(to_string(questionLevels[i]), categories[randomNumber], check, i + 1, prev, rem); 
+		i++; 
+		if (i == 15) break; 
+	} 
 	while (check != 0);
 	system("cls");
-	cout << "========================================================================" << endl;
-	cout << endl;
-	cout << "             End of game             " << endl;
-	cout << endl;
-	cout << "========================================================================" << endl;
+	if (i == 15) {
+		cout << "========================================================================" << endl;
+		cout << endl;
+		cout << "                       Congratulattions!                                " << endl;
+		cout << "                      You won $1 MILLION!                               " << endl;;
+		cout << endl;
+		cout << "========================================================================" << endl;
+	}
 }
 
 int main()
