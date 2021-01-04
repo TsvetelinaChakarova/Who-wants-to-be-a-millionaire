@@ -12,6 +12,21 @@ using namespace std;
 
 void returnToHomeScreen();
 
+
+bool InputMenuCheck(int input) {
+	if (input != 1 && input != 2 && input != 3 && input != 4) {
+		return 0; // in case of incorrect input
+	}
+	else return 1; // in case of correct input
+}
+
+bool InputAnswerCheck(string input) {
+	if (input != "A" && input != "B" && input != "C" && input != "D") {
+		return 0; // in case of incorrect input
+	}
+	else return 1; // in case of correct input
+}
+
 int FileLinesCount(string fileName) {
 	
 	int numLines = 0;
@@ -80,7 +95,14 @@ void HomeScreen(int &choice) {
 	cout << endl;
 	cout << "Enter your choice here: "; 
 	cin >> choice; 
-	cout << endl;
+	if (InputMenuCheck(choice) == 1) {
+		cout << endl;
+	}
+	else {
+		while (InputMenuCheck(choice) == 0) {
+			cout << "Incorrect input! Input 1, 2, 3 or 4: "; cin >> choice;
+		}
+	}
 }
 
 void ChooseCategory(int& choice) {
@@ -95,7 +117,14 @@ void ChooseCategory(int& choice) {
 	cout << "========================================================================" << endl;
 	cout << "Enter your choice here: ";
 	cin >> choice;
-	cout << endl;
+	if (InputMenuCheck(choice) == 1) {
+		cout << endl;
+	}
+	else {
+		while (InputMenuCheck(choice) == 0) {
+			cout << "Incorrect input! Input 1, 2, 3 or 4: "; cin >> choice;
+		}
+	}
 }
 
 
@@ -115,7 +144,14 @@ void OutputQuestion(string level, string category, int &check, int numberQuestio
 	cout << "========================================================================" << endl;
 	cout << "Enter your choice here: ";
 	cin >> answerChoice;
-	cout << endl;
+	if (InputAnswerCheck(answerChoice) == 1) {
+		cout << endl;
+	}
+	else {
+		while (InputAnswerCheck(answerChoice) == 0) {
+			cout << "Incorrect input! Input A, B, C or D: "; cin >> answerChoice;
+		}
+	}
 	string questionID = GetLineFromFile(fileName, rand - 1);
 	string rightAnswer = GetLineFromFile("answers.txt", stoi(questionID));
 	system("cls"); 
