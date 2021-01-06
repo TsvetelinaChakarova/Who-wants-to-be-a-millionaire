@@ -141,6 +141,8 @@ void OutputQuestion(string level, string category, int &check, int numberQuestio
 	prev = rand;
 	cout << "========================================================================" << endl;
 	for (int i = rand + 1; i < rand + 6; i++) cout << GetLineFromFile(fileName, i) << endl;
+	cout << endl;
+	cout << "Question code: "; cout << GetLineFromFile(fileName, rand - 1) << endl;
 	cout << "========================================================================" << endl;
 	cout << "Enter your choice here: ";
 	cin >> answerChoice;
@@ -320,6 +322,12 @@ int main()
 	}
 	
 	if (choice == 1) {
+		system("cls");
+		cout << "========================================================================" << endl;
+		cout << "                          Attention!                                    " << endl;
+		cout << "     Remember the question code in case you want to edit it later!      " << endl;
+		cout << "========================================================================" << endl;
+		system("pause");
 		system("cls");
 		int categoryChoice; string category;
 		ChooseCategory(categoryChoice);
