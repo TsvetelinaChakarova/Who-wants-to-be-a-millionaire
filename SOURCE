@@ -170,6 +170,38 @@ void LifeLine50_50(string fileName, string rightAnswer, int numberQuestion, int 
 }
 
 
+
+void LifelinePhoneAFriendSpecific(string fileName, string rightAnswer, int numberQuestion, int random, int percantage) {
+	bool TrueFalse;
+	srand(time(0));
+	TrueFalse = (rand() % 100) < percantage;  //generating a random number between  0 and 99. If the number is < percantage TrueFalse = 1. Otherwise it equals 0.
+	
+	// if (TrueFalse == 1) the friend gives a correct answer. if (TrueFalse == 0) the friend gives a wrong answer
+	cout << "I think the right answer is ";
+	if (TrueFalse == 1) {
+		cout << rightAnswer << endl;
+	}
+	else {
+		vector<string> options = { "A", "B", "C", "D" };
+		options.erase(remove(options.begin(), options.end(), rightAnswer), options.end());  //removing the correct answer from the vector with options, because we do not want to choose it randomly for elimination
+		srand(time(0));
+		int wrongOutputIndex = rand() % options.size();
+		cout << options[wrongOutputIndex] << endl;
+	}
+}
+void LifelinePhoneAFriendOverall(string fileName, string rightAnswer, int numberQuestion, int random) { 
+	if (fileName == "level1.txt" || fileName == "level2.txt" || fileName == "level3.txt") {
+		LifelinePhoneAFriendSpecific(fileName, rightAnswer, numberQuestion, random, 70);
+	}
+	else if (fileName == "level4.txt" || fileName == "level5.txt" || fileName == "level6.txt") {
+		LifelinePhoneAFriendSpecific(fileName, rightAnswer, numberQuestion, random, 40);
+	}
+	else  {
+		LifelinePhoneAFriendSpecific(fileName, rightAnswer, numberQuestion, random, 20);
+	}
+}
+
+
 void OutputQuestion(string level, string category, int &check, int numberQuestion, int &prev, int &rem) {
 	string prizeScale[15] = { "$500", "$1,000", "$2,000", "$3,000", "$5,000", "$7,500", "$10,000", "$20,000",
 				 "$30,000", "$50,000", "$75,000", "$150,000", "$250,000", "$500,000", "$1 MILLION" };
@@ -195,13 +227,16 @@ void OutputQuestion(string level, string category, int &check, int numberQuestio
 		cout << "Invalid! Enter again: "; cin >> answerLifeline;
 	}
 	if (answerLifeline == 'y') {
-		cout << "Available lifelines: 1. 50/50" << endl;
+		cout << "Available lifelines: 1. 50/50, 2. Phone a frined, 3. Ask the public"" << endl;
 		cout << "Enter your choice: ";
 		int lifelineChoice;
 		cin >> lifelineChoice;
 		if (lifelineChoice == 1) {
 			system("cls");
 			LifeLine50_50(fileName, GetLineFromFile("answers.txt", stoi(GetLineFromFile(fileName, rand - 1))), numberQuestion, rand);
+		}
+		if (lifelineChoice == 2) {
+			LifelinePhoneAFriendOverall(fileName, GetLineFromFile("answers.txt", stoi(GetLineFromFile(fileName, rand - 1))), numberQuestion, rand);
 		}
 	}
 
