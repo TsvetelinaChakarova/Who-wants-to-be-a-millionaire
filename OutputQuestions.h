@@ -21,6 +21,7 @@
 
 #include "FileFunctions.h"
 #include "Lifelines.h"
+#include "LifelinesOutput.h"
 
 
 void OutputQuestion(string level, string category, int& check, int numberQuestion, int& prev, int& rem) {
@@ -43,29 +44,8 @@ void OutputQuestion(string level, string category, int& check, int numberQuestio
 	cout << "Question code: "; cout << GetLineFromFile(fileName, rand - 1) << endl;
 
 	cout << "========================================================================" << endl;
-	cout << "Do you want to use a lifeline? (y/n): ";
-	char answerLifeline;
 
-	cin >> answerLifeline;
-	while (answerLifeline != 'y' && answerLifeline != 'n') {
-		cout << "Invalid! Enter again: "; cin >> answerLifeline;
-	}
-	if (answerLifeline == 'y') {
-		cout << "Available lifelines: 1. 50/50, 2. Phone a frined, 3. Ask the public" << endl;
-		cout << "Enter your choice: ";
-		int lifelineChoice;
-		cin >> lifelineChoice;
-		if (lifelineChoice == 1) {
-			system("cls");
-			LifeLine50_50(fileName, GetLineFromFile("answers.txt", stoi(GetLineFromFile(fileName, rand - 1))), numberQuestion, rand);
-		}
-		if (lifelineChoice == 2) {
-			LifelinePhoneAFriendOverall(fileName, GetLineFromFile("answers.txt", stoi(GetLineFromFile(fileName, rand - 1))), numberQuestion, rand);
-		}
-		if (lifelineChoice == 3) {
-			LifelineAskThePublicOverall(fileName, GetLineFromFile("answers.txt", stoi(GetLineFromFile(fileName, rand - 1))), numberQuestion, rand );
-		}
-	}
+	OutputLifelines(fileName, numberQuestion, rand);
 
 	cout << "Enter your choice here: ";
 	cin >> answerChoice;
