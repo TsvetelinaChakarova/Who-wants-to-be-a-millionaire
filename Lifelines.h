@@ -82,4 +82,89 @@ void LifelinePhoneAFriendOverall(string fileName, string rightAnswer, int number
 	}
 }
 
+
+vector<int> Generate100() {
+
+		vector<int> percentages;
+		int perc1 = rand() % (97) + 1; // generating random number between 1 and 97
+		int perc2 = rand() % (98 - perc1) + 1; // generating random number between 1 and 98 - the previous number
+		int perc3 = rand() % (99 - (perc1 + perc2)) + 1; //generating random number between 1 and 99 - the sum of the two previous numbers
+		int perc4 = 100 - (perc1 + perc2 + perc3); // the last number is equal to 100 - the sum of the three previous numbers
+		
+		percentages.push_back(perc1);
+		percentages.push_back(perc2);
+		percentages.push_back(perc3);
+		percentages.push_back(perc4);
+
+		sort(percentages.begin(), percentages.end()); 
+
+		return percentages;
+}
+
+void LifelineAskThePublicSpecific(string fileName, string rightAnswer, int numberQuestion, int percantage) {
+	bool TrueFalse;
+	srand(time(0));
+	TrueFalse = (rand() % 100) < percantage;  //if TrueFalse = 1 the public is right. if TrureFalse = 0 the public is wrong. 
+
+	//if the public is right, the percantage of the right answer will be the biggest percantage, if not - there will be bigger
+	//generating four random numbers so that there sum is equal to 100 using Generate100()
+
+	vector<int> percentages = Generate100();
+	for (int i = 0; i < 4; i++)
+		cout << percentages[i] << " ";
+
+	if (TrueFalse == 1) {
+		vector<string> options = { "A", "B", "C", "D" };
+		cout << "The public has voted:" << endl;
+		cout << percentages[3] << "% for " << rightAnswer << "." << endl; //giving the right answer the biggest percantages (the vector is ascending so the last number is the biggest)
+
+		//removing the correct answer from the vector
+		options.erase(remove(options.begin(), options.end(), rightAnswer), options.end());
+
+		int index = rand() % options.size();
+		cout << percentages[2] << "% for " << options[index] << "." << endl;
+
+		options.erase(remove(options.begin(), options.end(), options[index]), options.end());
+
+		index = rand() % options.size();
+		cout << percentages[1] << "% for " << options[index] << "." << endl;
+
+		options.erase(remove(options.begin(), options.end(), options[index]), options.end());
+		cout << percentages[0] << "% for " << options[0] << "." << endl;
+	}
+
+	if (TrueFalse == 0) {
+		vector<string> options = { "A", "B", "C", "D" };
+		options.erase(remove(options.begin(), options.end(), rightAnswer), options.end());
+		int index = rand() % options.size();
+		cout << percentages[3] << "% for " << options[index] << "." << endl;
+		
+		options.erase(remove(options.begin(), options.end(), options[index]), options.end()); //removing the outputed option
+		options.push_back(rightAnswer); // adding the right answer back 
+
+		index = rand() % options.size();
+		cout << percentages[2] << "% for " << options[index] << "." << endl;
+
+		options.erase(remove(options.begin(), options.end(), options[index]), options.end());
+
+		index = rand() % options.size();
+		cout << percentages[1] << "% for " << options[index] << "." << endl;
+
+		options.erase(remove(options.begin(), options.end(), options[index]), options.end());
+		cout << percentages[0] << "% for " << options[0] << "." << endl;
+	}
+}
+
+void LifelineAskThePublicOverall(string fileName, string rightAnswer, int numberQuestion, int random) {
+	if (fileName == "level1.txt" || fileName == "level2.txt" || fileName == "level3.txt") {
+		LifelineAskThePublicSpecific(fileName, rightAnswer, numberQuestion, 70);  // for level of difficulty between 1 and 3 the friend has 70% chance to give right answer
+	}
+	else if (fileName == "level4.txt" || fileName == "level5.txt" || fileName == "level6.txt") {
+		LifelineAskThePublicSpecific(fileName, rightAnswer, numberQuestion, 40);  // for level of difficulty between 4 and 6 the friend 40% chance for right answer
+	}
+	else {
+		LifelineAskThePublicSpecific(fileName, rightAnswer, numberQuestion, 20); // for level of difficulty between 7 and 10 the friend 20% chance for right answer
+	}
+}
+
 #endif
