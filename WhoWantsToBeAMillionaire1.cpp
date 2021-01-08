@@ -22,14 +22,13 @@
 
 using namespace std;
 
-
 int main()
-{	int choice;
+{	string choice;
 	do {
 		
 		HomeScreen(choice);
 
-		if (choice == 1) {
+		if (choice == "1") {
 			system("cls");
 			cout << "========================================================================" << endl;
 			cout << "                          Attention!                                    " << endl;
@@ -37,37 +36,37 @@ int main()
 			cout << "========================================================================" << endl;
 			system("pause");
 			system("cls");
-			int categoryChoice; string category;
+			string categoryChoice;
+			string category;
 			ChooseCategory(categoryChoice);
 			system("cls");
 
-			if (categoryChoice == 1) {
+			if (categoryChoice == "1") {
 				OutputAllQuestions("Bulgarian history");
 			}
-			else if (categoryChoice == 2) {
+			else if (categoryChoice == "2") {
 				OutputAllQuestions("Bulgarian geography");
 			}
-			else if (categoryChoice == 3) {
+			else if (categoryChoice == "3") {
 				OutputAllQuestions("Bulgarian sport");
 			}
-
-
-			if (categoryChoice == 4) {
+			if (categoryChoice == "4") {
 				OutputAllQueastionsForAllCategories();
 			}
 		}
 
-		if (choice == 2) {
+		if (choice == "2") {
 			system("cls");
 			AddNewQuestion();
 		}
 
-		if (choice == 3) {
+		if (choice == "3") {
 			system("cls");
 			EditQuestion();
 		}
 
-	} while (choice != 4);
+	} while (choice != "4");
+ 
 	return 0;
 }
 
