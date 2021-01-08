@@ -49,6 +49,9 @@ void OutputQuestion(string level, string category, int& check, int numberQuestio
 		if (lifelineChoice == 2) {
 			LifelinePhoneAFriendOverall(fileName, GetLineFromFile("answers.txt", stoi(GetLineFromFile(fileName, rand - 1))), numberQuestion, rand);
 		}
+		if (lifelineChoice == 3) {
+			LifelineAskThePublicOverall(fileName, GetLineFromFile("answers.txt", stoi(GetLineFromFile(fileName, rand - 1))), numberQuestion, rand );
+		}
 	}
 
 	cout << "Enter your choice here: ";
@@ -77,7 +80,7 @@ void OutputQuestion(string level, string category, int& check, int numberQuestio
 		cout << "========================================================================" << endl;
 		cout << "                   Your answer was wrong.                               " << endl;
 		cout << "                  The correct answer was:                               ";
-		
+	    cout<<endl;	
 		//outputing the write answer
 		if (rightAnswer == "A") {
 			cout << "                        " << GetLineFromFile(fileName, rand + 2) << endl; //If the answer is A -> output the line 2 lines below the  line with the category
