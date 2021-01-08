@@ -60,15 +60,15 @@ void EditQuestion()
 		getline(cin, newQuestion);
 	}
 
-	cout << "Do you want to editoption A? y/n: ";
+	cout << "Do you want to edit option A? y/n: ";
 	cin >> answer;  // y/n
 	if (answer == 'y') {
-		cout << "Input the edited option A below in fromat: A. ___: " << endl;
+		cout << "Input the edited option A below in format: A. ___: " << endl;
 		cin.ignore();
 		getline(cin, newA); cout << newA << " " << "A" << endl;
 	}
 
-	cout << "Do you want to option B? y/n: ";
+	cout << "Do you want to edit option B? y/n: ";
 	cin >> answer;  // y/n
 	if (answer == 'y') {
 		cout << "Input the edited option B below in format: B. ___: " << endl;

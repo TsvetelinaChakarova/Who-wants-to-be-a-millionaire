@@ -20,6 +20,7 @@
 #include <string.h>
 #include <vector>
 #include <ctime>
+#include <algorithm>
 
 #include "FileFunctions.h"
 
@@ -124,8 +125,6 @@ void LifelineAskThePublicSpecific(string fileName, string rightAnswer, int numbe
 	//generating four random numbers so that there sum is equal to 100 using Generate100()
 
 	vector<int> percentages = Generate100();
-	for (int i = 0; i < 4; i++)
-		cout << percentages[i] << " ";
 
 	if (TrueFalse == 1) {
 		vector<string> options = { "A", "B", "C", "D" };
