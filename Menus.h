@@ -23,21 +23,21 @@
 using namespace std;
 
 
-bool InputMenuCheck(int input) {
-	if (input != 1 && input != 2 && input != 3 && input != 4) {
+bool InputMenuCheck(const string& input) {
+	if (input != "1" && input != "2" && input != "3" && input != "4") {
 		return 0; // in case of incorrect input
 	}
 	else return 1; // in case of correct input
 }
 
-bool InputAnswerCheck(string input) {
+bool InputAnswerCheck(const string& input) {
 	if (input != "A" && input != "B" && input != "C" && input != "D") {
 		return 0; // in case of incorrect input
 	}
 	else return 1; // in case of correct input
 }
 
-void HomeScreen(int& choice) {
+void HomeScreen(string& choice) {
 	cout << "===================== Who wants to be a milionaire =====================" << endl;
 	cout << "=========================== Bulgaria edition ===========================" << endl;
 	cout << endl;
@@ -49,19 +49,21 @@ void HomeScreen(int& choice) {
 	cout << "========================================================================" << endl;
 	cout << endl;
 	cout << "Enter your choice here: ";
-	cin >> choice;
+	
+	getline(cin, choice);
 	if (InputMenuCheck(choice) == 1) {
 		cout << endl;
 	}
 	else {
 		while (InputMenuCheck(choice) == 0) {
-			cout << "Incorrect input! Input 1, 2, 3 or 4: "; cin >> choice;
+			cout << "Incorrect input! Input 1, 2, 3 or 4: "; 
+			getline(cin, choice);
 		}
 	}
 }
 
 
-void ChooseCategory(int& choice) {
+void ChooseCategory(string& choice) {
 	cout << "========================================================================" << endl;
 	cout << endl;
 	cout << "                       Choose a category:                               " << endl;
@@ -72,13 +74,15 @@ void ChooseCategory(int& choice) {
 	cout << endl;
 	cout << "========================================================================" << endl;
 	cout << "Enter your choice here: ";
-	cin >> choice;
+	
+	getline(cin, choice);
 	if (InputMenuCheck(choice) == 1) {
 		cout << endl;
 	}
 	else {
 		while (InputMenuCheck(choice) == 0) {
-			cout << "Incorrect input! Input 1, 2, 3 or 4: "; cin >> choice;
+			cout << "Incorrect input! Input 1, 2, 3 or 4: "; 
+			getline(cin, choice);
 		}
 	}
 }
