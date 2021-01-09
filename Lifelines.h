@@ -24,7 +24,7 @@
 
 #include "FileFunctions.h"
 
-void LifeLine50_50(string fileName, string rightAnswer, int numberQuestion, int random) {
+void LifeLine50_50(const string& fileName, const string& rightAnswer, const int& numberQuestion, const int& random) {
 
 	vector<string> options = { "A", "B", "C", "D" };
 	options.erase(remove(options.begin(), options.end(), rightAnswer), options.end());  //removing the correct answer from the vector with options, because we do not want to choose it randomly for elimination
@@ -55,19 +55,24 @@ void LifeLine50_50(string fileName, string rightAnswer, int numberQuestion, int 
 	cout << numberQuestion << ".";
 	for (int i = random + 1; i < random + 6; i++)
 	{
-		if (GetLineFromFile(fileName, i) == GetLineFromFile(fileName, random + 1 + index1)) { cout << endl; continue; }
-		if (GetLineFromFile(fileName, i) == GetLineFromFile(fileName, random + 1 + index2)) { cout << endl; continue; }
+		if (GetLineFromFile(fileName, i) == GetLineFromFile(fileName, random + 1 + index1)) { 
+			cout << endl; 
+			continue; 
+		}
+		if (GetLineFromFile(fileName, i) == GetLineFromFile(fileName, random + 1 + index2)) { 
+			cout << endl; 
+			continue; 
+		}
 		cout << GetLineFromFile(fileName, i) << endl;
 	}
 	cout << endl;
-	cout << "Question code: "; cout << GetLineFromFile(fileName, random - 1) << endl;
+	cout << "Question code: "; 
+	cout << GetLineFromFile(fileName, random - 1) << endl;
 
 	cout << "========================================================================" << endl;
 }
 
-
-
-void LifelinePhoneAFriendSpecific(string fileName, string rightAnswer, int numberQuestion, int random, int percantage) {
+void LifelinePhoneAFriendSpecific(const string& fileName, const string& rightAnswer, const int& numberQuestion, const int& random, const int& percantage) {
 	bool TrueFalse;
 	srand(time(0));
 	TrueFalse = (rand() % 100) < percantage;  //generating a random number between  0 and 99. If the number is < percantage TrueFalse = 1. Otherwise it equals 0.
@@ -85,7 +90,8 @@ void LifelinePhoneAFriendSpecific(string fileName, string rightAnswer, int numbe
 		cout << options[wrongOutputIndex] << endl;
 	}
 }
-void LifelinePhoneAFriendOverall(string fileName, string rightAnswer, int numberQuestion, int random) {
+
+void LifelinePhoneAFriendOverall(const string& fileName, const string& rightAnswer, const int& numberQuestion, const int& random) {
 	if (fileName == "level1.txt" || fileName == "level2.txt" || fileName == "level3.txt") {
 		LifelinePhoneAFriendSpecific(fileName, rightAnswer, numberQuestion, random, 70);  // for level of difficulty between 1 and 3 the friend has 70% chance to give right answer
 	}
@@ -96,7 +102,6 @@ void LifelinePhoneAFriendOverall(string fileName, string rightAnswer, int number
 		LifelinePhoneAFriendSpecific(fileName, rightAnswer, numberQuestion, random, 20); // for level of difficulty between 7 and 10 the friend 20% chance for right answer
 	}
 }
-
 
 vector<int> Generate100() {
 
@@ -116,7 +121,7 @@ vector<int> Generate100() {
 		return percentages;
 }
 
-void LifelineAskThePublicSpecific(string fileName, string rightAnswer, int numberQuestion, int percantage) {
+void LifelineAskThePublicSpecific(const string& fileName, const string& rightAnswer, const int& numberQuestion, const int& percantage) {
 	bool TrueFalse;
 	srand(time(0));
 	TrueFalse = (rand() % 100) < percantage;  //if TrueFalse = 1 the public is right. if TrureFalse = 0 the public is wrong. 
@@ -168,7 +173,7 @@ void LifelineAskThePublicSpecific(string fileName, string rightAnswer, int numbe
 	}
 }
 
-void LifelineAskThePublicOverall(string fileName, string rightAnswer, int numberQuestion, int random) {
+void LifelineAskThePublicOverall(const string& fileName, const string& rightAnswer, const int& numberQuestion, const int& random) {
 	if (fileName == "level1.txt" || fileName == "level2.txt" || fileName == "level3.txt") {
 		LifelineAskThePublicSpecific(fileName, rightAnswer, numberQuestion, 70);  // for level of difficulty between 1 and 3 the friend has 70% chance to give right answer
 	}
