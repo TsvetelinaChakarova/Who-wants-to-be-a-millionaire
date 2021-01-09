@@ -16,7 +16,7 @@
 #ifndef _LifelinesOutput_
 #define _LifelinesOutput_
 
-#include <string.h>
+#include <cstring>
 
 #include "FileFunctions.h"
 #include "Lifelines.h"
@@ -58,9 +58,9 @@ void OutputLifelines(string fileName, int numberQuestion, int rand) {
 	}
 	cout << "Do you want to use a lifeline? (y/n): ";
 	string answerLifeline;
-
 	cin.ignore();
 	getline(cin, answerLifeline);
+	
 	while (answerLifeline != "y" && answerLifeline != "n") {
 		cout << "Invalid! Enter again: "; getline(cin, answerLifeline);
 	}
