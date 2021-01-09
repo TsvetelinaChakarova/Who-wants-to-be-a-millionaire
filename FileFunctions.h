@@ -22,20 +22,20 @@
 
 using namespace std; 
 
-int FileLinesCount(string fileName) {
+int FileLinesCount(const string& fileName) {
 	int numLines = 0;
 	ifstream in(fileName);
 	string unused;
-	while (getline(in, unused))
+	while (getline(in, unused)) {
 		++numLines;
-
+	}
 	return numLines;
 }
 
-string GetLineFromFile(string fileName, int certainLine) {
+string GetLineFromFile(const string& fileName, const int& certainLine) {
 	ifstream myFile;
 
-	myFile.open(fileName, std::fstream::in);
+	myFile.open(fileName, ios::in);
 
 	string line;
 	int countLines = 1;
@@ -49,11 +49,11 @@ string GetLineFromFile(string fileName, int certainLine) {
 }
 
 //the lines from a specific file that are equal to a specific string are saved in a vector
-vector<int> FindLinesEqualToString(string fileName, string searchedString) {
+vector<int> FindLinesEqualToString(const string& fileName, const string& searchedString) {
 
 	vector<int> foundLines;
 	ifstream myFile;
-	myFile.open(fileName, std::fstream::in);
+	myFile.open(fileName, ios::in);
 	string line;
 	int countLines = 1;
 	while (getline(myFile, line)) {
@@ -68,14 +68,14 @@ vector<int> FindLinesEqualToString(string fileName, string searchedString) {
 }
 
 
-string FindFileContainingString(string searched) {
+string FindFileContainingString(const string& searched) {
 	ifstream myFile;
 	string myFileName;
 	bool isThere;
 	int i;
 	for (i = 1; i < 11; i++) {
 		myFileName = "level" + to_string(i) + ".txt";
-		myFile.open(myFileName, std::fstream::in);
+		myFile.open(myFileName, ios::in);
 
 		string line;
 
