@@ -24,14 +24,15 @@
 #include "LifelinesOutput.h"
 
 
-void OutputQuestion(string level, string category, int& check, int numberQuestion, int& prev, int& rem) {
+void OutputQuestion(const string& level, const string& category, int& check, int numberQuestion, int& prev, int& rem) {
 	string prizeScale[15] = { "$500", "$1,000", "$2,000", "$3,000", "$5,000", "$7,500", "$10,000", "$20,000",
 							 "$30,000", "$50,000", "$75,000", "$150,000", "$250,000", "$500,000", "$1 MILLION" };   //on question number i from the game the player wins prizeScale[i-1] if his answer is correct
 	system("cls");
 	check = 1;
 	string answerChoice;
 	string fileName = "level" + level + ".txt";
-	vector<int> a = FindLinesEqualToString(fileName, category); a.erase(remove(a.begin(), a.end(), rem), a.end());
+	vector<int> a = FindLinesEqualToString(fileName, category); 
+	a.erase(remove(a.begin(), a.end(), rem), a.end());
 	srand(time(0));
 	int randomNumber = rand() % a.size();
 
@@ -39,23 +40,23 @@ void OutputQuestion(string level, string category, int& check, int numberQuestio
 	prev = rand;
 	cout << "========================================================================" << endl;
 	cout << numberQuestion << ".";
-	for (int i = rand + 1; i < rand + 6; i++) cout << GetLineFromFile(fileName, i) << endl;
+	for (int i = rand + 1; i < rand + 6; i++) {
+		cout << GetLineFromFile(fileName, i) << endl;
+	}
 	cout << endl;
-	cout << "Question code: "; cout << GetLineFromFile(fileName, rand - 1) << endl;
+	cout << "Question code: ";
+	cout << GetLineFromFile(fileName, rand - 1) << endl;
 
 	cout << "========================================================================" << endl;
 
 	OutputLifelines(fileName, numberQuestion, rand);
 
 	cout << "Enter your choice here: ";
-	cin >> answerChoice;
-	if (InputAnswerCheck(answerChoice) == 1) {
-		cout << endl;
-	}
-	else {
-		while (InputAnswerCheck(answerChoice) == 0) {
-			cout << "Incorrect input! Input A, B, C or D: "; cin >> answerChoice;
-		}
+	
+	getline(cin, answerChoice);
+	while (InputAnswerCheck(answerChoice) == 0) {
+			cout << "Incorrect input! Input A, B, C or D: "; getline(cin, answerChoice);
+	
 	}
 	string questionID = GetLineFromFile(fileName, rand - 1);
 	rem = prev;
