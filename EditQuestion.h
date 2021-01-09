@@ -17,25 +17,41 @@
 #define _EditQuestion_
 
 #include <fstream>
-#include <string.h>
+#include <string>
 
+#include "AddQuestion.h"
 #include "FileFunctions.h";
 
-
+//if the user inputs something different to "y" or "n", the program wants the user to input again
+void y_nValidation(string& answer) {
+	while (answer != "y" && answer != "n") {
+		cout << "Invalid! Enter y or n: ";
+		getline(cin, answer);
+	}
+}
 
 void EditQuestion()
 {
-
-	int questionCode;
-	char answer; // that is fot the user to input if he wants to edit 
+	string answer; // that is fot the user to input if he wants to edit 
 	int lastExistingQuestionCode = FileLinesCount("answers.txt");   // "answers.txt" contains number of lines equal to the last existing question code
+	string lastQuestionCode = to_string(lastExistingQuestionCode);
+	
 	cout << "Input the Question code of the question you want to edit: ";
-	cin >> questionCode;
-	while (questionCode > lastExistingQuestionCode || questionCode < 1) {
+	bool isValid = false;   //isValid = true when the input is a number between  and the last exsisting question code
+	string questionCode;
+	
+	do {
+		getline(cin, questionCode);
+		EmptyStringValidation(questionCode); //the user will be asked to input again if he presses Enter
+		for (int i = 1; i <= lastExistingQuestionCode; i++) {
+			if (questionCode == to_string(i)) {
+				isValid = true;
+			}
+		} 
+		if (isValid == true) break;
 		cout << "Inccorect! A question with that code was not found." << endl;
 		cout << "Try again: ";
-		cin >> questionCode;
-	}
+	} while (isValid == false);
 
 	ifstream myFile;
 	string myFileName = FindFileContainingString(to_string(questionCode));   //finding the file containg the question we want to edit 
@@ -53,44 +69,49 @@ void EditQuestion()
 	string newQuestion = " ", newA = " ", newB = " ", newC = " ", newD = " ";
 
 	cout << "Do you want to edit the question's content? y/n: ";  // "question's content" means the question itself without the answers to it
-	cin >> answer;  // y/n
-	if (answer == 'y') {
-		cout << "Input the edited question below: " << endl;
-		cin.ignore();
-		getline(cin, newQuestion);
-	}
+	getline(cin, answer); // y/n
+		y_nValidation(answer);
+		if (answer == "y") {
+			cout << "Input the edited question below: " << endl;
+			getline(cin, newQuestion);
+			EmptyStringValidation(newQuestion);
+		}
 
 	cout << "Do you want to edit option A? y/n: ";
-	cin >> answer;  // y/n
-	if (answer == 'y') {
-		cout << "Input the edited option A below in format: A. ___: " << endl;
-		cin.ignore();
-		getline(cin, newA); cout << newA << " " << "A" << endl;
-	}
-
+	getline(cin, answer);  // y/n
+		y_nValidation(answer);
+		if (answer == "y") {
+			cout << "Input the edited option A below in fromat: A. ___: " << endl;
+			cin.ignore();
+			getline(cin, newA); 
+		}
+	
 	cout << "Do you want to edit option B? y/n: ";
-	cin >> answer;  // y/n
-	if (answer == 'y') {
-		cout << "Input the edited option B below in format: B. ___: " << endl;
-		cin.ignore();
-		getline(cin, newB);
-	}
+	getline(cin, answer);  // y/n
+		y_nValidation(answer);
+		if (answer == "y") {
+			cout << "Input the edited option B below in format: B. ___: " << endl;
+			cin.ignore();
+			getline(cin, newB);
+		}
 
 	cout << "Do you want to edit option C? y/n: ";
-	cin >> answer;  // y/n
-	if (answer == 'y') {
-		cout << "Input the edited option C below in format: C. ___: " << endl;
-		cin.ignore();
-		getline(cin, newC);
-	}
+	getline(cin, answer);  // y/n
+		y_nValidation(answer);
+		if (answer == "y") {
+			cout << "Input the edited option C below in format: C. ___: " << endl;
+			cin.ignore();
+			getline(cin, newC);
+		}
 
 	cout << "Do you want to edit option D? y/n: ";
-	cin >> answer;  // y/n
-	if (answer == 'y') {
-		cout << "Input the edited option D below in format: D. ___ " << endl;
-		cin.ignore();
-		getline(cin, newD);
-	}
+	getline(cin, answer);  // y/n
+		y_nValidation(answer);
+		if (answer == "y") {
+			cout << "Input the edited option D below in format: D. ___ " << endl;
+			cin.ignore();
+			getline(cin, newD);
+		}
 
 	string tempFileName = "temp.txt";   // creating a temporary file for the editing file algorithm
 	ofstream tempFile(tempFileName);
