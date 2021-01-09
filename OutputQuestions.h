@@ -64,7 +64,7 @@ void OutputQuestion(const string& level, const string& category, int& check, int
 	system("cls");
 	if (answerChoice == rightAnswer) {
 		cout << "========================================================================" << endl;
-		cout << "                          Correct answer!                               " << endl;
+		cout << "                          Correct answer!" << endl;
 		cout << "                    Your cuurent prize is:" << prizeScale[numberQuestion - 1] << endl;
 		cout << "========================================================================" << endl;
 		system("pause");
@@ -72,33 +72,44 @@ void OutputQuestion(const string& level, const string& category, int& check, int
 	else {
 		system("cls");
 		cout << "========================================================================" << endl;
-		cout << "                   Your answer was wrong.                               " << endl;
-		cout << "                  The correct answer was:                               ";
+		cout << "                   Your answer was wrong." << endl;
+		cout << "                  The correct answer was:";
 	    cout<<endl;	
 		//outputing the write answer
 		if (rightAnswer == "A") {
-			cout << "                        " << GetLineFromFile(fileName, rand + 2) << endl; //If the answer is A -> output the line 2 lines below the  line with the category
+			cout << "                        ";
+			cout << GetLineFromFile(fileName, rand + 2) << endl; //If the answer is A -> output the line 2 lines below the  line with the category
 		}
 		else if (rightAnswer == "B") {
-			cout << "                        " << GetLineFromFile(fileName, rand + 3) << endl;
+			cout << "                          ";
+			cout << GetLineFromFile(fileName, rand + 3) << endl;
 		}
+		
 		else if (rightAnswer == "C") {
-			cout << "                      " << GetLineFromFile(fileName, rand + 4) << endl;
+			cout << "                          ";
+			cout << GetLineFromFile(fileName, rand + 4) << endl;
 		}
 		else {
-			cout << "                    " << GetLineFromFile(fileName, rand + 5) << endl;
+			cout << "                          ";
+			cout << GetLineFromFile(fileName, rand + 5) << endl;
 		}
-		cout << "                       END OF GAME!                                     " << endl;
-		if (numberQuestion == 1) { cout << "                          You won: $0" << endl; }
-		else
-			cout << "                  You won: " << prizeScale[numberQuestion - 2] << endl; //the player ends the game with the money earned from the previous question
+
+		cout << endl;
+		cout << "                        END OF GAME!" << endl;
+		cout << endl;
+
+		if (numberQuestion == 1) {
+			cout << "                        You won: $0" << endl;
+		}
+		else {
+			cout << "                       You won: ";
+			cout << prizeScale[numberQuestion - 2] << endl; //the player ends the game with the money earned from the previous question
+		}
 		cout << "========================================================================" << endl;
 		system("pause");
 		check = 0;
-
 	}
 }
-
 
 void OutputAllQuestions(string category) {
 	int check = 1;
@@ -115,8 +126,8 @@ void OutputAllQuestions(string category) {
 	if (i == 15) {
 		cout << "========================================================================" << endl;
 		cout << endl;
-		cout << "                       Congratulattions!                                " << endl;
-		cout << "                      You won $1 MILLION!                               " << endl;
+		cout << "                       Congratulattions!" << endl;
+		cout << "                      You won $1 MILLION!" << endl;
 		cout << endl;
 		cout << "========================================================================" << endl;
 		system("pause");
@@ -143,8 +154,8 @@ void OutputAllQueastionsForAllCategories() {
 	if (i == 15) {
 		cout << "========================================================================" << endl;
 		cout << endl;
-		cout << "                       Congratulattions!                                " << endl;
-		cout << "                      You won $1 MILLION!                               " << endl;;
+		cout << "                       Congratulattions!" << endl;
+		cout << "                      You won $1 MILLION!" << endl;;
 		cout << endl;
 		cout << "========================================================================" << endl;
 		system("pause");
