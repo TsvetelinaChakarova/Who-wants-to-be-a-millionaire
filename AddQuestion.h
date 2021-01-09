@@ -40,7 +40,8 @@ void AddNewQuestion() {
 	cout << "Enter category: ";
 	getline(cin, category);
 	while (category != "Bulgarian history" && category != "Bulgarian sport" && category != "Bulgarian geography") {
-		cout << "Invalid! Choose a valid category: "; getline(cin, category);
+		cout << "Invalid! Choose a valid category: "; 
+		getline(cin, category);
 	}
 
 	cout << "Enter level of difficulty (between 1 and 10): ";
@@ -99,7 +100,13 @@ void AddNewQuestion() {
 	myFile << endl;
 	myFile << correctAnswer;
 	myFile.close();
-
+	
+	system("cls");
+	cout << "========================================================================" << endl;
+	cout << "	Your question has been added successfully with question code: "; 
+	cout << questionIDNumber << endl;
+	cout << "========================================================================" << endl;
+	
 	system("pause");
 	system("cls");
 }
