@@ -20,6 +20,12 @@
 
 #include "FileFunctions.h";
 
+void EmptyStringValidation(string& input) {
+	while (input.length() == 0) {
+		cout << "Try again: ";
+		getline(cin, input);
+	}
+}
 
 void AddNewQuestion() {
 	ofstream myFile;
@@ -31,7 +37,6 @@ void AddNewQuestion() {
 	cout << "         Bulgarian history, Bulgarian geography, Bulgarian sport        " << endl;
 	cout << "========================================================================" << endl;
 
-	cin.ignore();   // it is used to remove previous problematic input
 	cout << "Enter category: ";
 	getline(cin, category);
 	while (category != "Bulgarian history" && category != "Bulgarian sport" && category != "Bulgarian geography") {
@@ -41,31 +46,42 @@ void AddNewQuestion() {
 	cout << "Enter level of difficulty (between 1 and 10): ";
 	getline(cin, levelOfDifficulty);
 	while (levelOfDifficulty != "1" && levelOfDifficulty != "2" && levelOfDifficulty != "3" && levelOfDifficulty != "4" && levelOfDifficulty != "5" && levelOfDifficulty != "6" && levelOfDifficulty != "7" && levelOfDifficulty != "8" && levelOfDifficulty != "9" && levelOfDifficulty != "10") {
-		cout << "Invalid! Choose a difficulty between 1 and 10: "; getline(cin, levelOfDifficulty);
+		cout << "Invalid! Choose a difficulty between 1 and 10: "; 
+		getline(cin, levelOfDifficulty);
 	}
 
 	cout << "Enter question: ";
 	getline(cin, question);
+	EmptyStringValidation(question);
+	
 	cout << "Eneter option A: ";
 	getline(cin, answerA);
+	EmptyStringValidation(answerA);
+	
 	cout << "Eneter option B: ";
 	getline(cin, answerB);
+	EmptyStringValidation(answerB);
+	
 	cout << "Eneter option C: ";
 	getline(cin, answerC);
+	EmptyStringValidation(answerC);
+	
 	cout << "Eneter option D: ";
 	getline(cin, answerD);
+	EmptyStringValidation(answerD);
 
 	cout << "Enter correct answer (A/B/C/D): ";
 	getline(cin, correctAnswer);
 	while (correctAnswer != "A" && correctAnswer != "B" && correctAnswer != "C" && correctAnswer != "D") {
-		cout << "Invalid! Choose a valid answer (A/B/C/D): "; getline(cin, correctAnswer);
+		cout << "Invalid! Choose a valid answer (A/B/C/D): "; 
+		getline(cin, correctAnswer);
 	}
 
 	int questionIDNumber = FileLinesCount("answers.txt") + 1; //the number of lines in "answers.txt" is equal to the last added question ID number; 
 															 // so the new ID number is equal to it + 1  
 
 	string myFileName = "level" + levelOfDifficulty + ".txt";
-	myFile.open(myFileName, ios_base::app); // app is used to append instead of overwrite
+	myFile.open(myFileName, ios::app); // app is used to append instead of overwrite
 
 	myFile << endl;
 	myFile << questionIDNumber << endl;
@@ -79,7 +95,7 @@ void AddNewQuestion() {
 
 	myFile.close();
 
-	myFile.open("answers.txt", ios_base::app);
+	myFile.open("answers.txt", ios::app);
 	myFile << endl;
 	myFile << correctAnswer;
 	myFile.close();
