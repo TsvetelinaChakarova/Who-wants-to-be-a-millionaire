@@ -17,7 +17,7 @@
 #define _FileFunctions_
 
 #include <fstream>
-#include <string.h>
+#include <cstring>
 #include <vector>
 
 using namespace std; 
