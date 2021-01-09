@@ -54,7 +54,7 @@ void OutputQuestion(const string& level, const string& category, int& check, int
 	cout << "Enter your choice here: ";
 	
 	getline(cin, answerChoice);
-	while (InputAnswerCheck(answerChoice) == 0) {
+	while (InputAnswerCheck(answerChoice) == false) {
 			cout << "Incorrect input! Input A, B, C or D: "; getline(cin, answerChoice);
 	
 	}
