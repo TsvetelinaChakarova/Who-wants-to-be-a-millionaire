@@ -25,16 +25,16 @@ using namespace std;
 
 bool InputMenuCheck(const string& input) {
 	if (input != "1" && input != "2" && input != "3" && input != "4") {
-		return 0; // in case of incorrect input
+		return false; // in case of incorrect input
 	}
-	else return 1; // in case of correct input
+	else return true; // in case of correct input
 }
 
 bool InputAnswerCheck(const string& input) {
 	if (input != "A" && input != "B" && input != "C" && input != "D") {
-		return 0; // in case of incorrect input
+		return false; // in case of incorrect input
 	}
-	else return 1; // in case of correct input
+	else return true; // in case of correct input
 }
 
 void HomeScreen(string& choice) {
