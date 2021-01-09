@@ -16,7 +16,7 @@
 #ifndef _LifelinesOutput_
 #define _LifelinesOutput_
 
-#include <string.h>
+#include <cstring>
 
 #include "FileFunctions.h"
 #include "Lifelines.h"
