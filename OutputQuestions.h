@@ -17,7 +17,7 @@
 #define _OutputQuestions_
 
 #include <ctime>
-#include <string.h>
+#include <cstring>
 
 #include "FileFunctions.h"
 #include "Lifelines.h"

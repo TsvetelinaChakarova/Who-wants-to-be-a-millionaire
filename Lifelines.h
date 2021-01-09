@@ -17,7 +17,7 @@
 #ifndef _Lifelines_
 #define _Lifelines_
 
-#include <string.h>
+#include <cstring>
 #include <vector>
 #include <ctime>
 #include <algorithm>
