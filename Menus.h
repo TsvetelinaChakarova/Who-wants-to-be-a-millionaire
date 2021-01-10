@@ -1,5 +1,5 @@
 /**
-*  
+*
 * Solution to course project #1
 * Introduction to programming course
 * Faculty of Mathematics and Informatics of Sofia University
@@ -13,6 +13,7 @@
 *
 */
 
+//#include <iostream>
 #ifndef _Menus_
 #define _Menus_
 
@@ -41,50 +42,49 @@ void HomeScreen(string& choice) {
 	cout << "===================== Who wants to be a milionaire =====================" << endl;
 	cout << "=========================== Bulgaria edition ===========================" << endl;
 	cout << endl;
-	cout << "                           1. New Game                                  " << endl;
-	cout << "                           2. Add new question                          " << endl;
-	cout << "                           3. Edit question                             " << endl;
-	cout << "                           4. Exit                                      " << endl;
+	cout << "                           1. New Game" << endl;
+	cout << "                           2. Add new question" << endl;
+	cout << "                           3. Edit question" << endl;
+	cout << "                           4. Exit" << endl;
 	cout << endl;
 	cout << "========================================================================" << endl;
 	cout << endl;
 	cout << "Enter your choice here: ";
-	
+
+
 	getline(cin, choice);
 	if (InputMenuCheck(choice) == 1) {
 		cout << endl;
 	}
 	else {
 		while (InputMenuCheck(choice) == 0) {
-			cout << "Incorrect input! Input 1, 2, 3 or 4: "; 
+			cout << "Incorrect input! Input 1, 2, 3 or 4: ";
 			getline(cin, choice);
 		}
 	}
 }
-
 
 void ChooseCategory(string& choice) {
 	cout << "========================================================================" << endl;
 	cout << endl;
-	cout << "                       Choose a category:                               " << endl;
-	cout << "                       1. Bulgarian history                             " << endl;
-	cout << "                       2. Bulgarian geography                           " << endl;
-	cout << "                       3. Bulgarian sport                               " << endl;
-	cout << "                       4. All categories                                " << endl;
+	cout << "                       Choose a category:" << endl;
+	cout << "                       1. Bulgarian history" << endl;
+	cout << "                       2. Bulgarian geography" << endl;
+	cout << "                       3. Bulgarian sport" << endl;
+	cout << "                       4. All categories" << endl;
 	cout << endl;
 	cout << "========================================================================" << endl;
 	cout << "Enter your choice here: ";
-	
+
 	getline(cin, choice);
-	if (InputMenuCheck(choice) == 1) {
+	if (InputMenuCheck(choice) == true) {
 		cout << endl;
 	}
 	else {
-		while (InputMenuCheck(choice) == 0) {
-			cout << "Incorrect input! Input 1, 2, 3 or 4: "; 
+		while (InputMenuCheck(choice) == false) {
+			cout << "Incorrect input! Input 1, 2, 3 or 4: ";
 			getline(cin, choice);
 		}
 	}
 }
-
 #endif
