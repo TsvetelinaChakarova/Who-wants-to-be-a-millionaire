@@ -54,9 +54,9 @@ void EditQuestion()
 	} while (isValid == false);
 
 	ifstream myFile;
-	string myFileName = FindFileContainingString(to_string(questionCode));   //finding the file containg the question we want to edit 
+	string myFileName = FindFileContainingString((questionCode));   //finding the file containg the question we want to edit 
 	myFile.open(myFileName);
-	vector<int>line = FindLinesEqualToString(myFileName, to_string(questionCode));  // there will be only one element in that vector 
+	vector<int>line = FindLinesEqualToString(myFileName, (questionCode));  // there will be only one element in that vector 
 
 	cout << "We found the question you are looking for!" << endl;
 	cout << endl;
