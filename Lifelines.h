@@ -1,18 +1,17 @@
 /**
-*  
+*
 * Solution to course project #1
 * Introduction to programming course
 * Faculty of Mathematics and Informatics of Sofia University
-* Winter semester 2020/2021
+* Winter semester 2020 / 2021
 *
-* @author Tsvetelina Chakarova
+*@author Tsvetelina Chakarova
 * @idnumber 62553
 * @compiler VC
 *
-* .h file containing the functions connected to the lifelines
+*.h file containing the functions connected to the lifelines
 *
 */
-
 
 #ifndef _Lifelines_
 #define _Lifelines_
@@ -39,14 +38,26 @@ void LifeLine50_50(const string& fileName, const string& rightAnswer, const int&
 
 	//index1 and index2 are used to know how many lines below the line with the questiopn is the options we need to eliminate
 	int index1, index2;
-	if (remove1 == "A") index1 = 1;
-	else if (remove1 == "B") index1 = 2;
-	else if (remove1 == "C") index1 = 3;
+	if (remove1 == "A") {
+		index1 = 1;
+	}
+	else if (remove1 == "B") {
+		index1 = 2;
+	}
+	else if (remove1 == "C") {
+		index1 = 3;
+	}
 	else index1 = 4;
 
-	if (remove2 == "A") index2 = 1;
-	else if (remove2 == "B") index2 = 2;
-	else if (remove2 == "C") index2 = 3;
+	if (remove2 == "A") {
+		index2 = 1;
+	}
+	else if (remove2 == "B") {
+		index2 = 2;
+	}
+	else if (remove2 == "C") {
+		index2 = 3;
+	}
 	else index2 = 4;
 
 	system("cls");
@@ -55,18 +66,18 @@ void LifeLine50_50(const string& fileName, const string& rightAnswer, const int&
 	cout << numberQuestion << ".";
 	for (int i = random + 1; i < random + 6; i++)
 	{
-		if (GetLineFromFile(fileName, i) == GetLineFromFile(fileName, random + 1 + index1)) { 
-			cout << endl; 
-			continue; 
+		if (GetLineFromFile(fileName, i) == GetLineFromFile(fileName, random + 1 + index1)) {
+			cout << endl;
+			continue;
 		}
-		if (GetLineFromFile(fileName, i) == GetLineFromFile(fileName, random + 1 + index2)) { 
-			cout << endl; 
-			continue; 
+		if (GetLineFromFile(fileName, i) == GetLineFromFile(fileName, random + 1 + index2)) {
+			cout << endl;
+			continue;
 		}
 		cout << GetLineFromFile(fileName, i) << endl;
 	}
 	cout << endl;
-	cout << "Question code: "; 
+	cout << "Question code: ";
 	cout << GetLineFromFile(fileName, random - 1) << endl;
 
 	cout << "========================================================================" << endl;
@@ -105,20 +116,20 @@ void LifelinePhoneAFriendOverall(const string& fileName, const string& rightAnsw
 
 vector<int> Generate100() {
 
-		vector<int> percentages;
-		int perc1 = rand() % (97) + 1; // generating random number between 1 and 97
-		int perc2 = rand() % (98 - perc1) + 1; // generating random number between 1 and 98 - the previous number
-		int perc3 = rand() % (99 - (perc1 + perc2)) + 1; //generating random number between 1 and 99 - the sum of the two previous numbers
-		int perc4 = 100 - (perc1 + perc2 + perc3); // the last number is equal to 100 - the sum of the three previous numbers
-		
-		percentages.push_back(perc1);
-		percentages.push_back(perc2);
-		percentages.push_back(perc3);
-		percentages.push_back(perc4);
+	vector<int> percentages;
+	int perc1 = rand() % (97) + 1; // generating random number between 1 and 97
+	int perc2 = rand() % (98 - perc1) + 1; // generating random number between 1 and 98 - the previous number
+	int perc3 = rand() % (99 - (perc1 + perc2)) + 1; //generating random number between 1 and 99 - the sum of the two previous numbers
+	int perc4 = 100 - (perc1 + perc2 + perc3); // the last number is equal to 100 - the sum of the three previous numbers
 
-		sort(percentages.begin(), percentages.end()); 
+	percentages.push_back(perc1);
+	percentages.push_back(perc2);
+	percentages.push_back(perc3);
+	percentages.push_back(perc4);
 
-		return percentages;
+	sort(percentages.begin(), percentages.end());
+
+	return percentages;
 }
 
 void LifelineAskThePublicSpecific(const string& fileName, const string& rightAnswer, const int& numberQuestion, const int& percantage) {
@@ -156,7 +167,7 @@ void LifelineAskThePublicSpecific(const string& fileName, const string& rightAns
 		options.erase(remove(options.begin(), options.end(), rightAnswer), options.end());
 		int index = rand() % options.size();
 		cout << percentages[3] << "% for " << options[index] << "." << endl;
-		
+
 		options.erase(remove(options.begin(), options.end(), options[index]), options.end()); //removing the outputed option
 		options.push_back(rightAnswer); // adding the right answer back 
 
@@ -184,5 +195,4 @@ void LifelineAskThePublicOverall(const string& fileName, const string& rightAnsw
 		LifelineAskThePublicSpecific(fileName, rightAnswer, numberQuestion, 20); // for level of difficulty between 7 and 10 the friend 20% chance for right answer
 	}
 }
-
 #endif
