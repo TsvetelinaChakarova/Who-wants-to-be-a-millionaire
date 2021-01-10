@@ -9,10 +9,9 @@
 * @idnumber 62553
 * @compiler VC
 *
-* the main .cpp file 
+* the main .cpp file
 *
 */
-
 #include <iostream>
 
 #include "Menus.h"
@@ -23,9 +22,10 @@
 using namespace std;
 
 int main()
-{	string choice;
+{
+	string choice;
 	do {
-		
+
 		HomeScreen(choice);
 
 		if (choice == "1") {
@@ -66,7 +66,6 @@ int main()
 		}
 
 	} while (choice != "4");
- 
+
 	return 0;
 }
-
