@@ -1,5 +1,5 @@
 /**
-*  
+*
 * Solution to course project #1
 * Introduction to programming course
 * Faculty of Mathematics and Informatics of Sofia University
@@ -31,13 +31,14 @@ void OutputQuestion(const string& level, const string& category, int& check, int
 	check = 1;
 	string answerChoice;
 	string fileName = "level" + level + ".txt";
-	vector<int> a = FindLinesEqualToString(fileName, category); 
+	vector<int> a = FindLinesEqualToString(fileName, category);
 	a.erase(remove(a.begin(), a.end(), rem), a.end());
 	srand(time(0));
-	int randomNumber = rand() % a.size();
 
+	int randomNumber = rand() % a.size();
 	int rand = a[randomNumber];
 	prev = rand;
+
 	cout << "========================================================================" << endl;
 	cout << numberQuestion << ".";
 	for (int i = rand + 1; i < rand + 6; i++) {
@@ -52,16 +53,16 @@ void OutputQuestion(const string& level, const string& category, int& check, int
 	OutputLifelines(fileName, numberQuestion, rand);
 
 	cout << "Enter your choice here: ";
-	
 	getline(cin, answerChoice);
 	while (InputAnswerCheck(answerChoice) == false) {
-			cout << "Incorrect input! Input A, B, C or D: "; getline(cin, answerChoice);
-	
+		cout << "Incorrect input! Input A, B, C or D: "; getline(cin, answerChoice);
 	}
+
 	string questionID = GetLineFromFile(fileName, rand - 1);
 	rem = prev;
 	string rightAnswer = GetLineFromFile("answers.txt", stoi(questionID));
 	system("cls");
+	
 	if (answerChoice == rightAnswer) {
 		cout << "========================================================================" << endl;
 		cout << "                          Correct answer!" << endl;
@@ -72,19 +73,21 @@ void OutputQuestion(const string& level, const string& category, int& check, int
 	else {
 		system("cls");
 		cout << "========================================================================" << endl;
-		cout << "                   Your answer was wrong." << endl;
-		cout << "                  The correct answer was:";
-	    cout<<endl;	
+		cout << "                     Your answer was wrong." << endl;
+		cout << "                    The correct answer was:";
+		cout << endl;
+
 		//outputing the write answer
 		if (rightAnswer == "A") {
-			cout << "                        ";
+			cout << "                          ";
 			cout << GetLineFromFile(fileName, rand + 2) << endl; //If the answer is A -> output the line 2 lines below the  line with the category
 		}
+
 		else if (rightAnswer == "B") {
 			cout << "                          ";
 			cout << GetLineFromFile(fileName, rand + 3) << endl;
 		}
-		
+
 		else if (rightAnswer == "C") {
 			cout << "                          ";
 			cout << GetLineFromFile(fileName, rand + 4) << endl;
@@ -131,7 +134,7 @@ void OutputAllQuestions(string category) {
 		cout << endl;
 		cout << "========================================================================" << endl;
 		system("pause");
-
+		system("cls");
 	}
 }
 
@@ -139,7 +142,9 @@ void OutputAllQueastionsForAllCategories() {
 	int check = 1;
 	string categories[3] = { "Bulgarian history", "Bulgarian sport" ,"Bulgarian geography" };
 	int questionLevels[15] = { 1, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 9, 10 };
-	int i = 0;  int prev; int rem;
+	int i = 0; 
+	int prev; 
+	int rem;
 
 	do {
 		srand(time(0));                 // helps to generate a different number each time rand() is executed
@@ -159,8 +164,7 @@ void OutputAllQueastionsForAllCategories() {
 		cout << endl;
 		cout << "========================================================================" << endl;
 		system("pause");
-	
+		system("cls");
 	}
 }
-
 #endif
