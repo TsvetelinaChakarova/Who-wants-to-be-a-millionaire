@@ -113,6 +113,40 @@ void EditQuestion()
 			getline(cin, newD);
 		}
 
+	string newRightAnswer;
+	cout << "Do you want to edit the right answer? y/n: ";
+	getline(cin, answer);  // y/n
+	y_nValidation(answer);
+	if (answer == "y") {
+		cout << "Input the right answer below: (A/B/C/D):" << endl;
+		getline(cin, newRightAnswer);
+		while (newRightAnswer != "A" && newRightAnswer != "B" && newRightAnswer != "C" && newRightAnswer != "D") {
+			cout << "Incorrect! Input A, B, C or D: ";
+			getline(cin, newRightAnswer);
+		}
+		
+		string tempFileNameA = "tempA.txt";
+		ofstream tempFileA(tempFileNameA);
+		ifstream answersFile("answers.txt");
+		int myFileLines = FileLinesCount("answers.txt"); cout << myFileLines << endl;
+		for (int i = 1; i <= myFileLines; i++) {
+			if (i != stoi(questionCode)) {
+				tempFileA << GetLineFromFile("answers.txt", i) << endl;
+			}
+			else {
+				tempFileA << newRightAnswer << endl;
+			}
+		}
+		
+		answersFile.close();
+		tempFileA.close();
+		const char* newName = "answers.txt";
+		const char* oldName = "tempA.txt";
+		remove(newName);
+		rename(oldName, newName);
+	
+	}
+	
 	string tempFileName = "temp.txt";   // creating a temporary file for the editing file algorithm
 	ofstream tempFile(tempFileName);
 
