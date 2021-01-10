@@ -9,7 +9,7 @@
 * @idnumber 62553
 * @compiler VC
 *
-* .h file containing the lifelines output 
+* .h file containing the lifelines output
 *
 */
 
@@ -17,16 +17,16 @@
 #define _LifelinesOutput_
 
 #include <cstring>
-#include <iostream>
 #include <string>
+#include <iostream>
 
 #include "FileFunctions.h"
 #include "Lifelines.h"
 
 bool LL1 = 1, LL2 = 1, LL3 = 1; //so that all lifelines are available at the begging
 
-void UsedLifelines(string lifelineChoice, bool& LL1, bool& LL2, bool& LL3) {
-	if (lifelineChoice == "1") { 
+void UsedLifelines(const string& lifelineChoice, bool& LL1, bool& LL2, bool& LL3) {
+	if (lifelineChoice == "1") {
 		LL1 = 0;
 	}
 	else if (lifelineChoice == "2") {
@@ -43,10 +43,10 @@ void Lifeline1(const string& fileName, const string& line, const int& numberQues
 	UsedLifelines("1", LL1, LL2, LL3);
 	system("cls");
 	LifeLine50_50(fileName, GetLineFromFile("answers.txt", stoi(GetLineFromFile(fileName, rand - 1))), numberQuestion, rand);
-	
-	}
 
-void Lifeline2 (const string& fileName, const string& line, const int& numberQuestion, const int& rand) {
+}
+
+void Lifeline2(const string& fileName, const string& line, const int& numberQuestion, const int& rand) {
 	UsedLifelines("2", LL1, LL2, LL3);
 	LifelinePhoneAFriendOverall(fileName, GetLineFromFile("answers.txt", stoi(GetLineFromFile(fileName, rand - 1))), numberQuestion, rand);
 }
@@ -59,19 +59,20 @@ void Lifeline3(const string& fileName, const string& line, const int& numberQues
 void OutputLifelines(const string& fileName, const int& numberQuestion, const int& rand) {
 	if (numberQuestion == 1) {
 		LL1 = 1;
-		LL2 = 1; 
+		LL2 = 1;
 		LL3 = 1;
 	}
 	cout << "Do you want to use a lifeline? (y/n): ";
 	string answerLifeline;
+
 	getline(cin, answerLifeline);
-	
 	while (answerLifeline != "y" && answerLifeline != "n") {
 		cout << "Invalid! Enter again: ";
 		getline(cin, answerLifeline);
 	}
+
 	if (answerLifeline == "y") {
-		//UsedLifelines(" ", LL1, LL2, LL3)
+
 		if (LL1 == 1 && LL2 == 1 && LL3 == 1) {
 			cout << "Available lifelines: 1. 50/50, 2. Phone a frined, 3. Ask the public" << endl;
 			cout << "Enter your choice: ";
@@ -79,7 +80,7 @@ void OutputLifelines(const string& fileName, const int& numberQuestion, const in
 			string lifelineChoice;
 			getline(cin, lifelineChoice);
 			while (lifelineChoice != "1" && lifelineChoice != "2" && lifelineChoice != "3") {
-				cout << "Invalid! Enter again: "; 
+				cout << "Invalid! Enter again: ";
 				getline(cin, lifelineChoice);
 			}
 
@@ -101,7 +102,7 @@ void OutputLifelines(const string& fileName, const int& numberQuestion, const in
 			string lifelineChoice;
 			getline(cin, lifelineChoice);
 			while (lifelineChoice != "2" && lifelineChoice != "3") {
-				cout << "Invalid! Enter again: "; 
+				cout << "Invalid! Enter again: ";
 				getline(cin, lifelineChoice);
 			}
 			if (lifelineChoice == "2") {
@@ -157,7 +158,8 @@ void OutputLifelines(const string& fileName, const int& numberQuestion, const in
 			string lifelineChoice;
 			getline(cin, lifelineChoice);
 			while (lifelineChoice != "1") {
-				cout << "Invalid! Enter again: "; getline(cin, lifelineChoice);
+				cout << "Invalid! Enter again: ";
+				getline(cin, lifelineChoice);
 			}
 			Lifeline1(fileName, GetLineFromFile("answers.txt", stoi(GetLineFromFile(fileName, rand - 1))), numberQuestion, rand);
 		}
@@ -169,7 +171,7 @@ void OutputLifelines(const string& fileName, const int& numberQuestion, const in
 			string lifelineChoice;
 			getline(cin, lifelineChoice);
 			while (lifelineChoice != "2") {
-				cout << "Invalid! Enter again: "; 
+				cout << "Invalid! Enter again: ";
 				getline(cin, lifelineChoice);
 			}
 			Lifeline2(fileName, GetLineFromFile("answers.txt", stoi(GetLineFromFile(fileName, rand - 1))), numberQuestion, rand);
@@ -182,7 +184,8 @@ void OutputLifelines(const string& fileName, const int& numberQuestion, const in
 			string lifelineChoice;
 			getline(cin, lifelineChoice);
 			while (lifelineChoice != "3") {
-				cout << "Invalid! Enter again: "; getline(cin, lifelineChoice);
+				cout << "Invalid! Enter again: ";
+				getline(cin, lifelineChoice);
 			}
 			Lifeline3(fileName, GetLineFromFile("answers.txt", stoi(GetLineFromFile(fileName, rand - 1))), numberQuestion, rand);
 		}
