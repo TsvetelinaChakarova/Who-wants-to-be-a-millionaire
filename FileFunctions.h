@@ -1,5 +1,5 @@
 /**
-*  
+*
 * Solution to course project #1
 * Introduction to programming course
 * Faculty of Mathematics and Informatics of Sofia University
@@ -20,7 +20,7 @@
 #include <cstring>
 #include <vector>
 
-using namespace std; 
+using namespace std;
 
 int FileLinesCount(const string& fileName) {
 	int numLines = 0;
@@ -50,7 +50,6 @@ string GetLineFromFile(const string& fileName, const int& certainLine) {
 
 //the lines from a specific file that are equal to a specific string are saved in a vector
 vector<int> FindLinesEqualToString(const string& fileName, const string& searchedString) {
-
 	vector<int> foundLines;
 	ifstream myFile;
 	myFile.open(fileName, ios::in);
@@ -67,7 +66,6 @@ vector<int> FindLinesEqualToString(const string& fileName, const string& searche
 	return foundLines;
 }
 
-
 string FindFileContainingString(const string& searched) {
 	ifstream myFile;
 	string myFileName;
@@ -81,12 +79,10 @@ string FindFileContainingString(const string& searched) {
 
 		while (getline(myFile, line)) {
 			if (line == searched) {
-
 				return ("level" + to_string(i) + ".txt");
 			}
 		}
 		myFile.close();
 	}
-
 }
 #endif
