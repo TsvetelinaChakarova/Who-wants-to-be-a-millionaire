@@ -1,4 +1,7 @@
-//@author Tsvetelina Chakarova
+/*
+* @author Tsvetelina Chakarova
+* @compiler VC
+*/
 
 #include <iostream>
 #include <fstream>
