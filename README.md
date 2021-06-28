@@ -1,3 +1,5 @@
+//The project is a part of "Introduction to programming in C++" course. 
+
 This project is a quiz game in the style of `Who wants to be a millionaire`.
 
 The player can choose between 3 categories - Bulgarian history, Bulgarian geography or Bulgarian sport. Additionally a game with all categories could be played.
@@ -10,5 +12,3 @@ There are 3 lifelines:
 Only one lifeline can be used on a question and each lifeline may only be used once during an entire game.
 
 Outside of the game, the user can add new question and edit exsisting question.
-
-//The project is a part of "Introduction to programming in C++" course. 
